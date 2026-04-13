@@ -2,7 +2,7 @@ package Goldman_Sachs;
 
 import java.util.*;
 
-public class ST_01_Apache_Log {
+public class GS_01_Apache_Log {
 
     /**
      * Given a log file, return IP address(es) which accesses the site most often.
