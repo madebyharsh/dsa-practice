@@ -1,7 +1,6 @@
-package strings;
+package Goldman_Sachs;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ST_01_Apache_Log {
 
