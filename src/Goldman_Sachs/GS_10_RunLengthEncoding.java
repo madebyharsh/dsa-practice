@@ -1,4 +1,4 @@
-package strings;
+package Goldman_Sachs;
 /*
  * Implement a run length encoding function.
  * For a string input the function returns output encoded as follows:
@@ -13,7 +13,7 @@ package strings;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
-public class ST_10_RunLength {
+public class GS_10_RunLengthEncoding {
 
     public static String rle(String input) {
         // Your code goes here

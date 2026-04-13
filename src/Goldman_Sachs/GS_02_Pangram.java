@@ -1,4 +1,4 @@
-package strings;
+package Goldman_Sachs;
 
 /*A pangram is a sentence where every letter of the English alphabet appears at least once.
 
@@ -22,7 +22,7 @@ Constraints:
 1 <= sentence.length <= 1000
 sentence consists of lowercase English letters. */
 
-public class ST_Pangram {
+public class GS_02_Pangram {
     public boolean checkIfPangram1(String sentence) {
         int[] chars = new int[26];
         for(char c: sentence.toCharArray()){

@@ -1,6 +1,6 @@
-package math;
+package Goldman_Sachs;
 
-public class MT_50_Pow {
+public class GS_00_Pow {
     // Brute Force
     public double myPowBrute(double x, int n) {
         double result = 1.0;
@@ -21,6 +21,7 @@ public class MT_50_Pow {
         }
         return pow(x, n);
     }
+
     public double pow(double x, int n){
         if(n == 0) return 1;
         double half = pow(x, n/2);
