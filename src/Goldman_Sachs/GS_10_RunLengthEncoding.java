@@ -19,9 +19,13 @@ public class GS_10_RunLengthEncoding {
         // Your code goes here
         StringBuilder sb=  new StringBuilder();
         input.chars().mapToObj(e->(char) e)
-                .collect(Collectors.groupingBy(e->e, LinkedHashMap::new, Collectors.counting()))
+                .collect(Collectors.groupingBy(
+                                e->e,
+                                LinkedHashMap::new,
+                                Collectors.counting()))
                 .entrySet().stream()
-                .map(e-> "" + e.getKey() + e.getValue()).forEach(e->sb.append(e));
+                .map(e-> "" + e.getKey() + e.getValue())
+                .forEach(e->sb.append(e));
         return sb.toString();
     }
     public static String rle(String str){
