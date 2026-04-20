@@ -1,7 +1,22 @@
 package strings;
 
 public class ST_415_AddStrings {
-    public String addStrings(String num1, String num2) {
+    public String addStrings2(String num1, String num2) {
+        int n = Math.max(num1.length(), num2.length());
+        char[] arr = new char[n + 1];
+        int carry = 0, i = num1.length()-1, j = num2.length()-1, k = n;
+        while(k >= 0){
+            int a = i >= 0 ? num1.charAt(i--) - '0' : 0;
+            int b = j >= 0 ? num2.charAt(j--) - '0' : 0;
+            int sum = a + b + carry;
+            carry = sum / 10;
+            sum = sum % 10;
+            arr[k--] = (char) ('0' + sum);
+        }
+        return arr[0] == '0' ? new String(arr, 1, n) : new String(arr);
+    }
+
+    public String addStrings1(String num1, String num2) {
         StringBuilder sb = new StringBuilder();
         int carry = 0;
         int ind1 = num1.length()-1, ind2 = num2.length()-1;
