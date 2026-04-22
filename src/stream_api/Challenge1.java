@@ -31,5 +31,18 @@ public class Challenge1 {
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2)-> e1, LinkedHashMap::new))
                         .toString()
         );
+
+
+        // Group words by Length with Unique, sorted value
+        List<String> words = Arrays.asList("aa", "aaa", "bl", "cd", "rrou", "rrr");
+        Map<Integer, List<String>> map = words.stream().collect(
+                Collectors.groupingBy(
+                        String::length,
+                        Collectors.collectingAndThen(
+                            Collectors.toList(),
+                                e -> e.stream().sorted().collect(Collectors.toList())
+                        )
+                ));
+        System.out.println(map.toString());
     }
 }
