@@ -16,13 +16,17 @@ public class Challenge1 {
                                         LinkedHashMap::new,
                                         Collectors.counting()))
                         .entrySet().stream()
-                        .sorted(new Comparator<Map.Entry<Integer, Long>>() {
-                            @Override
-                            public int compare(Map.Entry<Integer, Long> o1, Map.Entry<Integer, Long> o2) {
-                                int freqCompare = Long.compare(o2.getValue(), o1.getValue());
-                                return freqCompare != 0 ? freqCompare : o1.getKey() - o2.getKey();
-                            }
+                        .sorted((e1,e2)->{
+                            int freqCompare = Long.compare(e2.getValue(), e1.getValue());
+                            return freqCompare != 0 ? freqCompare : e1.getKey() - e2.getKey();
                         })
+//                        .sorted(new Comparator<Map.Entry<Integer, Long>>() {
+//                            @Override
+//                            public int compare(Map.Entry<Integer, Long> o1, Map.Entry<Integer, Long> o2) {
+//                                int freqCompare = Long.compare(o2.getValue(), o1.getValue());
+//                                return freqCompare != 0 ? freqCompare : o1.getKey() - o2.getKey();
+//                            }
+//                        })
                         .limit(3)
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2)-> e1, LinkedHashMap::new))
                         .toString()
