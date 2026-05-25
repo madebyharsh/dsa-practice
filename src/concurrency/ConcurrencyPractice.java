@@ -26,9 +26,9 @@ public class ConcurrencyPractice {
 
     public static void main(String[] args) throws Exception {
 
-         raceConditionDemo();
+//         raceConditionDemo();
 
-        // synchronizedFixDemo();
+         synchronizedFixDemo();
 
         // atomicIntegerDemo();
 
@@ -66,5 +66,29 @@ public class ConcurrencyPractice {
         t2.join();
         System.out.println("Expected :\t20000");
         System.out.println("Actual\t:\t"+ count);
+    }
+
+    // -----------------------------------------------------------------
+    // 2 - synchronizedFixDemo
+    // -----------------------------------------------------------------
+
+    public static synchronized void increment(){
+        count++;
+    }
+
+    public static void synchronizedFixDemo() throws InterruptedException{
+        Runnable task = new Runnable(){
+            @Override
+            public void run(){
+                for(int i = 0; i < 1000; i++){
+                    increment();
+                }
+            }
+        };
+
+        Thread t = new Thread(task);
+        t.start();
+        t.join();
+        System.out.println(count);
     }
 }
