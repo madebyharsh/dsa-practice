@@ -72,8 +72,12 @@ public class ConcurrencyPractice {
     // 2 - synchronizedFixDemo
     // -----------------------------------------------------------------
 
-    public static synchronized void increment(){
-        count++;
+    public static void increment(){
+        synchronized (ConcurrencyPractice.class){ // this is same as marking method to static and synchronized means class level locking
+            // for instance level locking use synchronized(this) even.
+            // synchronized blocks are more preferred than method level synchronization due to other tasks gets free from locking.
+            count++;
+        }
     }
 
     public static void synchronizedFixDemo() throws InterruptedException{
