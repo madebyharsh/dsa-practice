@@ -28,9 +28,9 @@ public class ConcurrencyPractice {
 
 //         raceConditionDemo();
 
-         synchronizedFixDemo();
+//         synchronizedFixDemo();
 
-        // atomicIntegerDemo();
+         atomicIntegerDemo();
 
         // deadlockDemo();
 
@@ -90,9 +90,28 @@ public class ConcurrencyPractice {
             }
         };
 
-        Thread t = new Thread(task);
-        t.start();
-        t.join();
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
         System.out.println(count);
+    }
+
+    static AtomicInteger atomicCounter = new AtomicInteger();
+    public static void atomicIntegerDemo() throws InterruptedException {
+        Runnable task = ()->{
+            for(int i = 0; i < 10000; i++){
+                atomicCounter.incrementAndGet();
+            }
+        };
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(atomicCounter.get());
     }
 }
