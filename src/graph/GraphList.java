@@ -1,10 +1,8 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class GraphList {
+public class GraphList implements Graph{
 
     private List<List<Integer>> adjList;
     int vertices;
@@ -26,5 +24,21 @@ public class GraphList {
         for(List<Integer> edge: adjList){
             System.out.println(edge);
         }
+    }
+    public boolean bfs(int start, int value){
+        boolean[] visited = new boolean[vertices];
+        Queue<Integer> queue = new LinkedList<>();
+        visited[start] = true;
+        queue.offer(start);
+        while(!queue.isEmpty()){
+            List<Integer> edges = adjList.get(queue.poll());
+            for(Integer edge: edges){
+                if(edge == value) return true;
+                if(visited[edge]) continue;
+                visited[edge] = true;
+                queue.offer(edge);
+            }
+        }
+        return false;
     }
 }

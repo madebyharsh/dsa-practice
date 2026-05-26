@@ -1,8 +1,10 @@
 package graph;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class GraphMatrix {
+public class GraphMatrix implements Graph{
 
     private int[][] adjMatrix;
     int vertices;
@@ -19,6 +21,25 @@ public class GraphMatrix {
         for(int[] row: adjMatrix){
             System.out.println(Arrays.toString(row));
         }
+    }
+
+    public boolean bfs(int st, int value){
+        Queue<Integer> queue = new LinkedList<>();
+        boolean visited[] = new boolean[vertices];
+        queue.offer(st);
+        visited[st] = true;
+        while(!queue.isEmpty()){
+            int vertex = queue.poll();
+            for(int i = 0; i < adjMatrix[vertex].length; i++){
+                if(!visited[i] && adjMatrix[vertex][i] == 1){
+                    if(i == value) return true;
+                    queue.offer(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return false;
+
     }
 
 }
