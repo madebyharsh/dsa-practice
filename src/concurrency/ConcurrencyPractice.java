@@ -30,9 +30,9 @@ public class ConcurrencyPractice {
 
 //         synchronizedFixDemo();
 
-         atomicIntegerDemo();
+//         atomicIntegerDemo();
 
-        // deadlockDemo();
+         deadlockDemo();
 
         // deadlockPreventionDemo();
 
@@ -113,5 +113,32 @@ public class ConcurrencyPractice {
         t1.join();
         t2.join();
         System.out.println(atomicCounter.get());
+    }
+
+    public static void deadlockDemo() throws InterruptedException{
+        Object obj1 = new Object();
+        Object obj2 = new Object();
+        Thread t1 = new Thread(()->{
+            synchronized (obj1){
+                System.out.println(Thread.currentThread().getName()+" locks obj 1");
+                synchronized (obj2){
+                    System.out.println(Thread.currentThread().getName()+" locks obj 2");
+                }
+            }
+            System.out.println("t1 ended.");
+        });
+        Thread t2 = new Thread(()->{
+            synchronized (obj2){
+                System.out.println(Thread.currentThread().getName()+" locks obj 2");
+                synchronized (obj1){
+                    System.out.println(Thread.currentThread().getName()+" locks obj 1");
+                }
+            }
+            System.out.println("t2 ended.");
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
     }
 }
